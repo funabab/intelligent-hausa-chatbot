@@ -1,3 +1,5 @@
+import { Message } from "ai";
+
 export type ChatSender = "user" | "bot";
 
 export interface ChatPayload {
@@ -5,6 +7,10 @@ export interface ChatPayload {
     content: string;
     sender: ChatSender;
   }[];
+}
+
+export interface ChatMessage extends Message {
+  system?: boolean;
 }
 
 export interface Chat {

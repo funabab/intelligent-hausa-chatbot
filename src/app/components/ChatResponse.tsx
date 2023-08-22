@@ -1,10 +1,9 @@
 import dayjs from "dayjs";
-import { Chat } from "../typings";
-import { ThreeDots } from "react-loader-spinner";
 import sanitizeHTML from "sanitize-html";
+import { ChatMessage } from "../typings";
 
 interface Props {
-  chat: Chat;
+  chat: ChatMessage;
 }
 
 export default function ChatResponse(props: Props) {
@@ -21,32 +20,21 @@ export default function ChatResponse(props: Props) {
         </div>
 
         <div className="chat-bubble pb-4">
-          {props.chat.isLoading ? (
-            <ThreeDots
-              height="40"
-              width="40"
-              radius="9"
-              color="#4fa94d"
-              ariaLabel="three-dots-loading"
-              visible={true}
-            />
-          ) : (
-            <span
-              dangerouslySetInnerHTML={{
-                __html: sanitizeHTML(
-                  props.chat.message
-                    ?.replace(/\n/g, "<br />")
-                    .replace(/(\w+):/g, "<b>$1</b>:") || ""
-                ),
-              }}
-            ></span>
-          )}
+          <span
+            dangerouslySetInnerHTML={{
+              __html: sanitizeHTML(
+                props.chat.content
+                  ?.replace(/\n/g, "<br />")
+                  .replace(/(\w+):/g, "<b>$1</b>:") || ""
+              ),
+            }}
+          ></span>
         </div>
       </div>
       <div className="flex gap-x-2 items-center justify-start ml-2">
         <strong className="text-neutral">Bot</strong>
         <span className="text-xs">
-          {dayjs(props.chat.date).format("hh:mm")}
+          {dayjs(props.chat.createdAt).format("hh:mm")}
         </span>
       </div>
     </div>

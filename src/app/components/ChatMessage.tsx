@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
-import { Chat } from "../typings";
+import { ChatMessage } from "../typings";
 
 interface Props {
-  chat: Chat;
+  chat: ChatMessage;
   avatarSeed: number | string;
 }
 
@@ -20,13 +20,13 @@ export default function ChatMessage(props: Props) {
         </div>
 
         <div className="chat-bubble chat-bubble-primary">
-          {props.chat.message}
+          {props.chat.content}
         </div>
       </div>
       <div className="flex gap-x-2 items-center justify-end mr-12">
         <strong className="text-primary">User</strong>
         <span className="text-xs">
-          {dayjs(props.chat.date).format("hh:mm")}
+          {dayjs(props.chat.createdAt).format("hh:mm")}
         </span>
       </div>
     </div>
