@@ -3,7 +3,7 @@
 import ChatResponse from "./ChatResponse";
 import ChatMessage from "./ChatMessage";
 import { AiOutlineSend } from "react-icons/ai";
-import React, { FormEvent, useMemo } from "react";
+import React, { FormEvent, useEffect, useMemo, useRef } from "react";
 import { ChatMessage as IChatMessage } from "../typings";
 import { useChat } from "ai/react";
 import { CHAT_CONTEXT } from "../utils/constants";
@@ -14,6 +14,7 @@ export default function Chat() {
     api: "/api/v1/chat",
     initialMessages: CHAT_CONTEXT,
   });
+  const scrollElRef = useRef<HTMLDivElement>(null);
 
   const handleSubmitChat = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,6 +27,12 @@ export default function Chat() {
       content: message,
     });
   };
+
+  useEffect(() => {
+    if (isLoading) {
+      scrollElRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [isLoading, messages]);
 
   return (
     <main className="flex min-h-0 flex-col flex-1 relative py-10">
@@ -43,6 +50,7 @@ export default function Chat() {
             </React.Fragment>
           ))}
         </div>
+        <div ref={scrollElRef}></div>
       </div>
       <div className="shrink-0 container mx-auto mt-5 px-2 md:px-0">
         <form onSubmit={handleSubmitChat}>
