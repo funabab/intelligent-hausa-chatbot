@@ -35,7 +35,7 @@ export default function Chat() {
   }, [isLoading, messages]);
 
   return (
-    <main className="flex min-h-0 flex-col flex-1 relative py-10">
+    <main className="flex min-h-0 flex-col flex-1 relative py-10 pb-5 md:pb-10">
       <div className="flex-1 grow relative overflow-y-auto">
         <div className="container mx-auto flex flex-col px-2 md:px-0">
           {messages.map((message: IChatMessage) => (

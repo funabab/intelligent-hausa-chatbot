@@ -1,8 +1,6 @@
 import Link from "next/link";
 import Chat from "./components/Chat";
 
-export const dynamic = "force-dynamic";
-
 export default function Home() {
   return (
     <div className="flex flex-col h-full w-full relative">

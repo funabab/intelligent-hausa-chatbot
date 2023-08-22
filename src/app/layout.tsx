@@ -18,7 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="emerald" className="w-full h-full">
-      <body className={twMerge(inter.className, "w-full h-full bg-base-100")}>
+      <body
+        className={twMerge(
+          inter.className,
+          "w-full h-full bg-base-100 overscroll-contain"
+        )}
+      >
         {children}
       </body>
     </html>
