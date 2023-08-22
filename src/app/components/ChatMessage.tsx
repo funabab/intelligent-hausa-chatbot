@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { Chat } from "./Chat";
+import { Chat } from "../typings";
 
 interface Props {
   chat: Chat;
@@ -23,7 +23,7 @@ export default function ChatMessage(props: Props) {
           {props.chat.message}
         </div>
       </div>
-      <div className="flex gap-x-2 items-center ml-10 justify-end mr-12">
+      <div className="flex gap-x-2 items-center justify-end mr-12">
         <strong className="text-primary">User</strong>
         <span className="text-xs">
           {dayjs(props.chat.date).format("hh:mm")}
