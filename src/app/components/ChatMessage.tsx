@@ -8,7 +8,7 @@ interface Props {
 
 export default function ChatMessage(props: Props) {
   return (
-    <div className="w-1/2 self-end">
+    <div className="w-full md:w-1/2 self-end">
       <div className="chat chat-end">
         <div className="chat-image avatar">
           <div className="w-16 rounded-full">

@@ -30,7 +30,7 @@ export default function Chat() {
   return (
     <main className="flex min-h-0 flex-col flex-1 relative py-10">
       <div className="flex-1 grow relative overflow-y-auto">
-        <div className="container mx-auto flex flex-col">
+        <div className="container mx-auto flex flex-col px-2 md:px-0">
           {messages.map((message: IChatMessage) => (
             <React.Fragment key={message.id}>
               {!message.system && message.role === "user" && (
@@ -44,7 +44,7 @@ export default function Chat() {
           ))}
         </div>
       </div>
-      <div className="shrink-0 container mx-auto mt-5">
+      <div className="shrink-0 container mx-auto mt-5 px-2 md:px-0">
         <form onSubmit={handleSubmitChat}>
           <div className="relative">
             <input
