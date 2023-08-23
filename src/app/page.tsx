@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Chat from './_components/Chat'
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -7,13 +8,18 @@ export default function Home() {
       <header className="shrink-0">
         <div className="navbar shadow bg-primary-focus text-primary-content">
           <div className="container mx-auto">
-            <Link href="/" className="btn btn-ghost normal-case text-xl">
-              <img
+            <Link
+              href="/"
+              className="btn btn-ghost normal-case text-xl flex items-center gap-x-4"
+            >
+              <Image
                 src={`https://api.dicebear.com/6.x/bottts-neutral/svg?seed=Shadow`}
                 alt="Bot Avatar image"
-                className="h-10 rounded-full"
+                width={32}
+                height={32}
+                className="rounded-full"
               />
-              Intelligent Hausa Chatbot
+              <span>Intelligent Hausa Chatbot</span>
             </Link>
           </div>
         </div>

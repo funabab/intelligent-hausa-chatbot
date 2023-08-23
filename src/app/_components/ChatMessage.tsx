@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import { ChatMessage } from '@/app/_typings'
+import Image from 'next/image'
 
 interface Props {
   chat: ChatMessage
@@ -12,15 +13,17 @@ export default function ChatMessage(props: Props) {
       <div className="chat chat-end">
         <div className="chat-image avatar">
           <div className="w-16 rounded-full">
-            <img
+            <Image
               src={`https://api.dicebear.com/6.x/adventurer/svg?seed=${props.avatarSeed}`}
               alt="Bot Avatar image"
+              width={64}
+              height={64}
             />
           </div>
         </div>
 
         <div className="chat-bubble chat-bubble-primary">
-          {props.chat.content}
+          <span dangerouslySetInnerHTML={{ __html: props.chat.content }}></span>
         </div>
       </div>
       <div className="flex gap-x-2 items-center justify-end mr-12">

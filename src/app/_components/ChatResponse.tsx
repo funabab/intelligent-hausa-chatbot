@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import sanitizeHTML from 'sanitize-html'
 import { ChatMessage } from '@/app/_typings'
+import Image from 'next/image'
 
 interface Props {
   chat: ChatMessage
@@ -12,9 +13,11 @@ export default function ChatResponse(props: Props) {
       <div className="chat chat-start">
         <div className="chat-image avatar">
           <div className="w-16 rounded-full">
-            <img
+            <Image
               src={`https://api.dicebear.com/6.x/bottts-neutral/svg?seed=Shadow`}
               alt="Bot Avatar image"
+              width={64}
+              height={64}
             />
           </div>
         </div>
