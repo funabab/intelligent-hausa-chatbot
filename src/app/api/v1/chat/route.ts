@@ -1,4 +1,3 @@
-import { ChatPayload } from '@/app/typings'
 import { Message, OpenAIStream, StreamingTextResponse } from 'ai'
 import Openai from 'openai'
 
