@@ -1,9 +1,9 @@
-import dayjs from "dayjs";
-import sanitizeHTML from "sanitize-html";
-import { ChatMessage } from "../typings";
+import dayjs from 'dayjs'
+import sanitizeHTML from 'sanitize-html'
+import { ChatMessage } from '@/app/_typings'
 
 interface Props {
-  chat: ChatMessage;
+  chat: ChatMessage
 }
 
 export default function ChatResponse(props: Props) {
@@ -24,8 +24,8 @@ export default function ChatResponse(props: Props) {
             dangerouslySetInnerHTML={{
               __html: sanitizeHTML(
                 props.chat.content
-                  ?.replace(/\n/g, "<br />")
-                  .replace(/(\w+):/g, "<b>$1</b>:") || ""
+                  ?.replace(/\n/g, '<br />')
+                  .replace(/(\w+):/g, '<b>$1</b>:') || ''
               ),
             }}
           ></span>
@@ -34,9 +34,9 @@ export default function ChatResponse(props: Props) {
       <div className="flex gap-x-2 items-center justify-start ml-2">
         <strong className="text-neutral">Bot</strong>
         <span className="text-xs">
-          {dayjs(props.chat.createdAt).format("hh:mm")}
+          {dayjs(props.chat.createdAt).format('hh:mm')}
         </span>
       </div>
     </div>
-  );
+  )
 }

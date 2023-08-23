@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Chat from "./components/Chat";
+import Link from 'next/link'
+import Chat from './_components/Chat'
 
 export default function Home() {
   return (
@@ -20,5 +20,5 @@ export default function Home() {
       </header>
       <Chat />
     </div>
-  );
+  )
 }

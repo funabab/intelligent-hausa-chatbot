@@ -1,38 +1,38 @@
-"use client";
+'use client'
 
-import ChatResponse from "./ChatResponse";
-import ChatMessage from "./ChatMessage";
-import { AiOutlineSend } from "react-icons/ai";
-import React, { FormEvent, useEffect, useMemo, useRef } from "react";
-import { ChatMessage as IChatMessage } from "../typings";
-import { useChat } from "ai/react";
-import { CHAT_CONTEXT } from "../utils/constants";
+import React, { FormEvent, useEffect, useMemo, useRef } from 'react'
+import ChatResponse from './ChatResponse'
+import ChatMessage from './ChatMessage'
+import { AiOutlineSend } from 'react-icons/ai'
+import { ChatMessage as IChatMessage } from '@/app/_typings'
+import { useChat } from 'ai/react'
+import { CHAT_CONTEXT } from '@/app/_utils/constants'
 
 export default function Chat() {
-  const avatarSeed = useMemo(() => Math.floor(Math.random() * 10000), []);
+  const avatarSeed = useMemo(() => Math.floor(Math.random() * 10000), [])
   const { append, messages, isLoading } = useChat({
-    api: "/api/v1/chat",
+    api: '/api/v1/chat',
     initialMessages: CHAT_CONTEXT,
-  });
-  const scrollElRef = useRef<HTMLDivElement>(null);
+  })
+  const scrollElRef = useRef<HTMLDivElement>(null)
 
   const handleSubmitChat = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const message = form.message.value;
-    form.reset();
+    e.preventDefault()
+    const form = e.target as HTMLFormElement
+    const message = form.message.value
+    form.reset()
 
     await append({
-      role: "user",
+      role: 'user',
       content: message,
-    });
-  };
+    })
+  }
 
   useEffect(() => {
     if (isLoading) {
-      scrollElRef.current?.scrollIntoView({ behavior: "smooth" });
+      scrollElRef.current?.scrollIntoView({ behavior: 'smooth' })
     }
-  }, [isLoading, messages]);
+  }, [isLoading, messages])
 
   return (
     <main className="flex min-h-0 flex-col flex-1 relative py-10 pb-5 md:pb-10">
@@ -40,11 +40,11 @@ export default function Chat() {
         <div className="container mx-auto flex flex-col px-2 md:px-0">
           {messages.map((message: IChatMessage) => (
             <React.Fragment key={message.id}>
-              {!message.system && message.role === "user" && (
+              {!message.system && message.role === 'user' && (
                 <ChatMessage chat={message} avatarSeed={avatarSeed} />
               )}
 
-              {!message.system && message.role === "assistant" && (
+              {!message.system && message.role === 'assistant' && (
                 <ChatResponse chat={message} />
               )}
             </React.Fragment>
@@ -70,5 +70,5 @@ export default function Chat() {
         </form>
       </div>
     </main>
-  );
+  )
 }

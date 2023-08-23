@@ -1,9 +1,9 @@
-import dayjs from "dayjs";
-import { ChatMessage } from "../typings";
+import dayjs from 'dayjs'
+import { ChatMessage } from '@/app/_typings'
 
 interface Props {
-  chat: ChatMessage;
-  avatarSeed: number | string;
+  chat: ChatMessage
+  avatarSeed: number | string
 }
 
 export default function ChatMessage(props: Props) {
@@ -26,9 +26,9 @@ export default function ChatMessage(props: Props) {
       <div className="flex gap-x-2 items-center justify-end mr-12">
         <strong className="text-primary">User</strong>
         <span className="text-xs">
-          {dayjs(props.chat.createdAt).format("hh:mm")}
+          {dayjs(props.chat.createdAt).format('hh:mm')}
         </span>
       </div>
     </div>
-  );
+  )
 }
