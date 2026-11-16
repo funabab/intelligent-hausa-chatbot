@@ -1,34 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Intelligent Hausa Chatbot
 
-## Getting Started
+A streaming chat assistant that answers in Hausa, whatever language you write to it in.
 
-First, run the development server:
+Built in August 2023 to get hands-on with the OpenAI streaming API and prompt design. One Next.js app, one
+API route, no framework between the UI and the model.
+
+## How it works
+
+- `src/app/api/v1/chat/route.ts` forwards the conversation to `gpt-3.5-turbo` with `stream: true` and returns
+  tokens as they arrive, using `OpenAIStream` and `StreamingTextResponse` from the Vercel AI SDK.
+- The persona lives in `src/app/_utils/constants.ts`: a system prompt that fixes the assistant's name, its job
+  (translate to Hausa, reply in Hausa) and a handful of seeded user/assistant turns that demonstrate the
+  answer format.
+- `Chat`, `ChatMessage` and `ChatResponse` render tokens as they stream, and the model output is passed
+  through `sanitize-html` before it is injected into the bubble.
+
+## Stack
+
+Next.js 13 (app router), TypeScript, Vercel AI SDK, OpenAI, Tailwind CSS with daisyUI.
+
+## Running it
 
 ```bash
+npm install
+echo "OPENAI_API_KEY=sk-..." > .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Notes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+No retrieval, no evaluation harness, no guardrails beyond the system prompt. It is a prompt-engineering
+exercise rather than a production assistant, and the interesting part is how much of the behaviour comes
+from the seeded examples rather than from the instructions.
